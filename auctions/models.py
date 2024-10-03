@@ -26,3 +26,8 @@ class Bid(models.Model):
 
 
 class Comment(models.Model):
+    list = models.ForeignKey(Auction, on_delete=models.CASCADE, related_name="auction_list")
+    comment = models.TextField()
+
+    def __str__(self):
+        return f"{self.list}: {self.comment}"
