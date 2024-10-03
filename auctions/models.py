@@ -9,14 +9,20 @@ class User(AbstractUser):
 class Auction(models.Model):
     name = models.CharField(max_length=64)
     category = models.CharField(max_length=32)
-    price = models.IntegerField()
+    initial_price = models.IntegerField()
     description = models.TextField()
     date = models.DateField(auto_created=True)
 
+    def __str__(self):
+        return f"{self.name}: {self.description}"
+
 
 class Bid(models.Model):
-    pass
+    user = models.CharField(max_length=64)
+    offer = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.user}: {self.offer}"
 
 
 class Comment(models.Model):
-    pass
