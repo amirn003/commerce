@@ -29,7 +29,6 @@ class Bid(models.Model):
     amount = models.IntegerField()
     time = models.DateTimeField(auto_now_add=True)
 
-
     def __str__(self):
         return f"{self.user}: {self.amount} ({self.time})"
 
@@ -43,6 +42,8 @@ class Comment(models.Model):
 
 
 class AuctionListing(models.Model):
+    title = models.CharField(max_length=10, default="New Auction")
+    description = models.CharField(max_length=64, default="None")
     bid = models.ForeignKey(Bid, on_delete=models.CASCADE, related_name="bid_ref")
     comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name="comment_ref")
     date = models.DateField(auto_created=True)
