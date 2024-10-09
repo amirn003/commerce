@@ -2,5 +2,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
+
+# def index(request):
+#     return HttpResponse("Commerce Index")
+
 def create(request):
-    return HttpResponse("<h1> Create Your Enchère </h1>")
+    return render(request, "auctions/create.html")
