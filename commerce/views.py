@@ -24,9 +24,14 @@ def add(request):
         title = request.POST["title"]
         description = request.POST["description"]
         bid = int(request.POST["bid"])
+        category_id = request.POST["category"]
+
+        ## Create an object Category
+        category = Category.objects.get(id=category_id)
 
 
         ## Create a Product object
-        p = Product(name=title, description=description) #bid=bid
+        p = Product(name=title, category=category, description=description) #bid=bid
+        p.save()
 
-        return HttpResponse(f"<h1>Add NEW Enchères for: {title} - {description} -{bid}</h1>")
+        return HttpResponse(f"<h1>Add NEW Enchères for: {p} Created!</h1>")
