@@ -2,10 +2,8 @@
 
 {% block body %}
 
-<h1> You can create your Enchère: </h1>
+<h1> You can create your Enchère below: </h1>
 
-<h2>Categories: {{ categories }}</h2>
-<h2> Category Info: {{ category_info }}</h2>
 
 <form action="{% url 'add' %}" method="POST">
   {% csrf_token %}
@@ -17,7 +15,7 @@
         <textarea class="form-control" id="description" name="description" placeholder="Description" rows="3"></textarea>
     </div>
     <div class="form-group">
-        <input class="form-control" type="text" name="bid" placeholder="Bid">
+        <input class="form-control" type="integer" name="bid" placeholder="Bid">
 
         <select class="mt-2" name="category" id="">
             {% for category in categories %}

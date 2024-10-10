@@ -12,8 +12,8 @@ def create(request):
     category_info = Category.objects.values('code')
     #categories = Category.objects.get(code="VEH")
     return render(request, "auctions/create.html", {
-        categories: "categories",
-        category_info: "category_info"
+        "categories": categories,
+        "category_info": category_info
     })
 
 
@@ -26,7 +26,7 @@ def add(request):
         bid = int(request.POST["bid"])
 
 
-        ## Create the Product object
+        ## Create a Product object
         p = Product(name=title, description=description) #bid=bid
 
         return HttpResponse(f"<h1>Add NEW Enchères for: {title} - {description} -{bid}</h1>")
