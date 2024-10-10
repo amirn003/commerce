@@ -8,3 +8,7 @@ from django.urls import reverse
 
 def create(request):
     return render(request, "auctions/create.html")
+
+
+def add(request):
+    return HttpResponse("<h1>Add NEW Enchères! </h1>")
