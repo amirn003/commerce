@@ -11,4 +11,10 @@ def create(request):
 
 
 def add(request):
-    return HttpResponse("<h1>Add NEW Enchères! </h1>")
+    if request.method == "POST":
+
+        title = request.POST["title"]
+        description = request.POST["description"]
+        bid = request.POST["bid"]
+
+        return HttpResponse(f"<h1>Add NEW Enchères for: {title} - {description} -{bid} </h1>")
