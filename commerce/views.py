@@ -26,13 +26,14 @@ def add(request):
         bid = int(request.POST["bid"])
         category_id = request.POST["category"]
         current_user = request.user
+        picture = request.FILES.get("picture")
 
         ## Create an object Category
         category = Category.objects.get(id=category_id)
 
 
         ## Create a Product object
-        p = Product(name=title, category=category, description=description, initial_price=bid) #bid=bid
+        p = Product(name=title, category=category, description=description, initial_price=bid, picture=picture) #bid=bid
         p.save()
 
         ## Attach this Product object to a Bid object and set the price with the starting bid given in the form
