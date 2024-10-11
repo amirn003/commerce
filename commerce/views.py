@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from auctions.models import Product, Category, Bid
+from auctions.models import Product, Category, Bid, Comment, AuctionListing
 
 
 # def index(request):
@@ -32,11 +32,17 @@ def add(request):
 
 
         ## Create a Product object
-        p = Product(name=title, category=category, description=description) #bid=bid
+        p = Product(name=title, category=category, description=description, initial_price=bid) #bid=bid
         p.save()
 
         ## Attach this Product object to a Bid object and set the price with the starting bid given in the form
         b = Bid(user=current_user, product=p, amount=bid)
         b.save()
 
-        return HttpResponse(f"<h1> {current_user}: Add NEW Enchères for: {p} Created!</h1>")
+        c = Comment(title=f"{title} Comment", description="details")
+        c.save()
+
+        a = AuctionListing(product=p, bid=b, comment=c)
+        a.save()
+
+        return HttpResponse(f"<h1> {current_user}: Add NEW Enchères for: {p} Created!</h1><br><p>{a}</p>")
