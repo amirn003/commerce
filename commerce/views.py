@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-from auctions.models import Product, Category, Bid, User
+from auctions.models import Product, Category, Bid
 
 
 # def index(request):
