@@ -26,7 +26,8 @@ def add(request):
         bid = int(request.POST["bid"])
         category_id = request.POST["category"]
         current_user = request.user
-        picture = request.FILES.get("picture")
+        #picture = request.FILES.get("picture") # to capture an image
+        picture = request.POST["picture"]
 
         ## Create an object Category
         category = Category.objects.get(id=category_id)

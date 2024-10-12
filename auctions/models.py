@@ -19,7 +19,9 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="category_ref")
     description = models.TextField()
     initial_price = models.IntegerField(default=1)
-    picture = models.ImageField(upload_to='pictures/', blank=True, null=True, default='pictures/default.jpeg')
+    #picture = models.ImageField(upload_to='pictures/', blank=True, null=True, default='pictures/default.jpeg') #this is to store an image
+    # picture as an URL
+    picture = models.CharField(max_length=128, blank=True, null=True)
 
     def __str__(self):
         return f"{self.name} ({self.category}): {self.description}"
