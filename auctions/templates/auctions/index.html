@@ -9,7 +9,7 @@
           <h3><a href="{% url 'page' item.id%}">{{ item.product.name }}</a></h3>
           <!-- <img src="{% static 'auctions/pictures/dna.png' %}" alt="dna"> -->
           <!-- <img src="https://amirn003.github.io/pictures/dna.png" alt="dna"> -->
-          <img src="{{ item.product.picture }}" alt="dna">
+          <img src="{{ item.product.picture }}" alt="">
           <p><b>{{ item.product.description }}</b></p>
           <p><b>{{ item.product.initial_price }} $</b></p>
           <p><i>{{ item.date }}</i></p>

@@ -17,7 +17,11 @@ def index(request):
 
 @login_required
 def page(request, listing_id):
-    return HttpResponse(f"<h1>Listing Page: {listing_id}</h1>")
+    listing = AuctionListing.objects.get(id=listing_id)
+    return render(request, "auctions/page.html", {
+        "listing": listing
+    })
+    #return HttpResponse(f"<h1>Listing Page: {listing_id}</h1>")
 
 
 def login_view(request):
