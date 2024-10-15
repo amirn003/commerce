@@ -5,9 +5,13 @@ body {
 .flex-container {
   margin: 5em;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 }
 
 .flex-item{
-
+  margin: 1em;
+  height: 30%;
+  width: 45%;
+  border: 3mm ridge rgba(211, 220, 50, .6);;
 }
