@@ -1,29 +1,28 @@
 {% extends "auctions/layout.html" %}
-
+{% load static %}
 {% block body %}
     <h2>Active Listings</h2>
 
     <div class="flex-container">
       <div class="flex-item">
         <h3>Title 1</h3>
-        <img src="https://unsplash.com/fr/photos/un-train-traversant-une-foret-remplie-de-nombreux-arbres-el8EOJhVjEU" alt="pipeline">
+        <img src="{% static 'auctions/pictures/pipeline.jpg' %}" alt="pipeline">
 
         <p>Description</p>
       </div>
 
       <div class="flex-item">
         <h3>Title 2</h3>
-        <img src="https://unsplash.com/fr/photos/un-train-traversant-une-foret-remplie-de-nombreux-arbres-el8EOJhVjEU" alt="pipeline">
+        <img src="{% static 'auctions/pictures/pipeline.jpg' %}" alt="pipeline">
 
         <p>Description 2</p>
       </div>
 
       <div class="flex-item">
         <h3>Title 3</h3>
-        <img src="https://unsplash.com/fr/photos/un-train-traversant-une-foret-remplie-de-nombreux-arbres-el8EOJhVjEU" alt="pipeline">
+        <img src="{% static 'auctions/pictures/default.jpeg' %}" alt="pipeline">
 
         <p>Description 3</p>
       </div>
-
     </div>
 {% endblock %}
