@@ -7,10 +7,11 @@
       {% for item in active_listing %}
         <div class="flex-item">
           <h3>{{ item.product.name }}</h3>
-          <img src="{% static 'auctions/pictures/pipeline.png' %}" alt="pipeline">
+          <img src="{% static 'auctions/pictures/dna.png' %}" alt="pipeline">
 
-          <p>{{ item.product.description }}</p>
-          <p>{{ item.product.initial_price }} $</p>
+          <p><b>{{ item.product.description }}</b></p>
+          <p><b>{{ item.product.initial_price }} $</b></p>
+          <p><i>{{ item.date }}</i></p>
         </div>
       {% endfor %}
 

@@ -11,8 +11,8 @@ body {
 
 .flex-item{
   margin: 1em;
-  height: 30vw;
-  width: 45%;
+  height: 40vw;
+  width: 40%;
   border: 3mm ridge rgba(211, 220, 50, .6);;
 }
 
