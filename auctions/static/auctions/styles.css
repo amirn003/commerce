@@ -1,3 +1,13 @@
 body {
     padding: 10px;
 }
+
+.flex-container {
+  margin: 5em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-item{
+
+}
