@@ -6,7 +6,7 @@
     <div class="flex-container">
       {% for item in active_listing %}
         <div class="flex-item">
-          <h3>{{ item.product.name }}</h3>
+          <h3><a href="{% url 'page' item.id%}">{{ item.product.name }}</a></h3>
           <!-- <img src="{% static 'auctions/pictures/dna.png' %}" alt="dna"> -->
           <!-- <img src="https://amirn003.github.io/pictures/dna.png" alt="dna"> -->
           <img src="{{ item.product.picture }}" alt="dna">
@@ -15,20 +15,6 @@
           <p><i>{{ item.date }}</i></p>
         </div>
       {% endfor %}
-
-      <!-- <div class="flex-item">
-        <h3>Title 2</h3>
-        <img src="{% static 'auctions/pictures/dna.png' %}" alt="pipeline">
-
-        <p>Description 2</p>
-      </div>
-
-      <div class="flex-item">
-        <h3>Title 3</h3>
-        <img src="{% static 'auctions/pictures/default.jpeg' %}" alt="pipeline">
-
-        <p>Description 3</p>
-      </div> -->
 
     </div>
 {% endblock %}

@@ -3,6 +3,7 @@ from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from .models import User, AuctionListing, Product
 
@@ -13,6 +14,10 @@ def index(request):
     return render(request, "auctions/index.html", {
         "active_listing": active_listing
     })
+
+@login_required
+def page(request, listing_id):
+    return HttpResponse(f"<h1>Listing Page: {listing_id}</h1>")
 
 
 def login_view(request):
