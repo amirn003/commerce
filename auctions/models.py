@@ -52,6 +52,7 @@ class AuctionListing(models.Model):
     bid = models.ForeignKey(Bid, on_delete=models.SET_NULL, related_name="bid_ref", null=True, blank=True)
     comment = models.ForeignKey(Comment, on_delete=models.SET_NULL, related_name="comment_ref", null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.bid}: {self.comment} ({self.date})"
