@@ -23,6 +23,8 @@ def page(request, listing_id):
     })
     #return HttpResponse(f"<h1>Listing Page: {listing_id}</h1>")
 
+def add_to_watchlist(request, listing_id):
+    return HttpResponse(f"<h1>Listing ID: {listing_id}</h1>")
 
 def login_view(request):
     if request.method == "POST":

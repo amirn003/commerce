@@ -26,6 +26,7 @@ body {
 
 .card {
   margin-top: 25px;
+  margin-bottom: 25px;
   width: 40vw;
   overflow: hidden;
   background: white;
@@ -51,11 +52,24 @@ body {
   margin: 0;
 }
 
-
 .card .card-infos {
   padding: 16px;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   position: relative;
+}
+
+.btn-page {
+  color: #4A4A4A;
+  border: 1px solid #4A4A4A;
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-weight: lighter;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.btn-page:hover {
+  opacity: 1;
 }
