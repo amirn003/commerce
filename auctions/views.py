@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from .models import User, AuctionListing, Product
+from .models import User, AuctionListing, Watchlist
 
 
 def index(request):
@@ -23,8 +23,15 @@ def page(request, listing_id):
     })
     #return HttpResponse(f"<h1>Listing Page: {listing_id}</h1>")
 
+
 def add_to_watchlist(request, listing_id):
-    return HttpResponse(f"<h1>Listing ID: {listing_id}</h1>")
+    current_user = request.user
+    current_user_id = request.user.id
+    listing = AuctionListing.objects.get(id=listing_id)
+
+    watchlist = Watchlist(user=current_user, auction=listing, state=True)
+    watchlist.save()
+    return HttpResponse(f"<h1>Listing ID: {listing_id} added to {current_user}'s Watchlist ({request.user.id})!</h1>")
 
 def login_view(request):
     if request.method == "POST":
