@@ -23,15 +23,33 @@ def page(request, listing_id):
     })
     #return HttpResponse(f"<h1>Listing Page: {listing_id}</h1>")
 
-
+@login_required
 def add_to_watchlist(request, listing_id):
     current_user = request.user
     current_user_id = request.user.id
     listing = AuctionListing.objects.get(id=listing_id)
+    watchlist = Watchlist.objects.filter(user=current_user_id, auction=listing)
 
-    watchlist = Watchlist(user=current_user, auction=listing, state=True)
-    watchlist.save()
-    return HttpResponse(f"<h1>Listing ID: {listing_id} added to {current_user}'s Watchlist ({request.user.id})!</h1>")
+    if listing.bid.user == current_user:
+        return HttpResponse(f"<h1>This item: {listing.bid} is yours. You cannot add it to your watchlist.</h1>")
+
+    elif watchlist:
+        return HttpResponse(f"<h1>This item: {listing.bid} is already in your Watchlist.</h1>")
+
+    else:
+        watchlist = Watchlist(user=current_user, auction=listing, state=True)
+        watchlist.save()
+        return HttpResponse(f"<h1>Listing ID: {listing_id} added to {current_user}'s Watchlist ({request.user.id})!</h1>")
+
+@login_required
+def watchlist(request):
+    current_user_id = request.user.id
+    watchlist = Watchlist.objects.filter(user=current_user_id)
+
+    return render(request, "auctions/watchlist.html", {
+        "watchlist": watchlist
+    })
+
 
 def login_view(request):
     if request.method == "POST":

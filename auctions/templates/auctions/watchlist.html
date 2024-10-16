@@ -1,0 +1,18 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+<h3>Welcome to Your Watchlist <b>{{ watchlist.user }}</b> !</h3>
+
+<ul>
+  {% for item in watchlist %}
+  <li>{{ item.auction }}</li>
+  {% empty %}
+  <li>No items.</li>
+  {% endfor %}
+
+</ul>
+
+
+{% endblock %}
