@@ -2,8 +2,18 @@
 {% load static %}
 
 {% block body %}
+
     <h2>Listing Page: {{ listing.id }}</h2>
-    <h3><u>{{ listing.product.name }}</u></h3>
-    <img src="{{ listing.product.picture }}" alt="">
+    <div class="card">
+
+      <img src="{{ listing.product.picture }}" />
+      <div class="card-infos">
+        <div>
+          <h3>{{ listing.product.name }}</h3>
+          <p>{{ listing.product.description }}</p>
+        </div>
+        <h3 class="card-pricing">{{ listing.product.initial_price }}$</h3>
+      </div>
+    </div>
 
 {% endblock %}

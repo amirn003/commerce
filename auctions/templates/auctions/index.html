@@ -10,10 +10,13 @@
           <!-- <img src="{% static 'auctions/pictures/dna.png' %}" alt="dna"> -->
           <!-- <img src="https://amirn003.github.io/pictures/dna.png" alt="dna"> -->
           <img src="{{ item.product.picture }}" alt="">
-          <p><b>{{ item.product.description }}</b></p>
-          <p><b>{{ item.product.initial_price }} $</b></p>
+          <u>Description:</u><br>
+          <p>{{ item.product.description }}</p>
           <p><i>{{ item.date }}</i></p>
+          <p>{{ item.product.initial_price }} $</p>
+
         </div>
+
       {% endfor %}
 
     </div>

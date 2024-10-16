@@ -11,13 +11,51 @@ body {
 
 .flex-item{
   margin: 1em;
-  height: 40vw;
+  height: 50vw;
   width: 40%;
-  border: 3mm ridge rgba(211, 220, 50, .6);;
+  border: 3mm ridge rgba(211, 220, 50, .6);
+
 }
 
-img {
+.flex-item > img {
   display: block;
-  max-width: 80%;
+  max-width: 70%;
   height: auto;
+  margin-bottom: 15px;
+}
+
+.card {
+  margin-top: 25px;
+  width: 40vw;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+.card > img {
+  width: 35vw;
+  height: auto;
+  position: center;
+  object-fit: cover;
+}
+
+.card h3 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card p {
+  font-size: 12px;
+  opacity: .7;
+  margin: 0;
+}
+
+
+.card .card-infos {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
 }
