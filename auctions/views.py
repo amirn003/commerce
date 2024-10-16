@@ -41,20 +41,22 @@ def add_to_watchlist(request, listing_id):
         watchlist.save()
         return HttpResponse(f"<h1>Listing ID: {listing_id} added to {current_user}'s Watchlist ({request.user.id})!</h1>")
 
+
 @login_required
 def remove_from_watchlist(request, listing_id):
     current_user = request.user
     current_user_id = request.user.id
     listing = AuctionListing.objects.get(id=listing_id)
-    watchlist = Watchlist.objects.get(user=current_user_id, auction=listing)
+    watchlist = Watchlist.objects.filter(user=current_user_id, auction=listing)
 
-    if watchlist:
+    if watchlist.exists():
         watchlist.delete()
-        return HttpResponse(f"<h1>Item: {listing.bid} removed from your Watchlist.</h1>")
+        return HttpResponse(f"<h1>Item: {listing.bid} removed from your <a href='/watchlist/'>Watchlist</a>.</h1>")
 
     else:
 
-        return HttpResponse(f"<h1>Item: {listing_id} not yet in your Watchlist.</h1>")
+        return HttpResponse(f"<h1>Item: {listing_id} is not yet in your <a href='/watchlist/'>Watchlist</a>.</h1>")
+
 
 @login_required
 def watchlist(request):
