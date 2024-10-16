@@ -56,3 +56,9 @@ class AuctionListing(models.Model):
 
     def __str__(self):
         return f"{self.bid}: {self.comment} ({self.date})"
+
+
+class Watchlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="watch_user_ref")
+    auction = models.ForeignKey(AuctionListing, on_delete=models.CASCADE, related_name="watch_listing_ref")
+    state = models.BooleanField(default=False)
