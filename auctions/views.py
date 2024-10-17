@@ -94,6 +94,19 @@ def bid(request, listing_id):
         else:
             return HttpResponse(f"<h1>Hi {current_user}! Please tip a bid over {listing.bid.amount}$.</h1>")
 
+def close(request, listing_id):
+    if request.method == "POST":
+        auction_state = request.POST.get('auction_state')
+        listing = AuctionListing.objects.get(id=listing_id)
+        if auction_state:
+            listing.active = False
+            listing.save()
+            return HttpResponse(f"<h1> Bid Won by {listing.bid.user}!</h1>")
+
+        else:
+            return HttpResponse(f"<h1>Your item {listing} is still on bid.</h1>")
+
+
 
 def login_view(request):
     if request.method == "POST":

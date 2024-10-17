@@ -22,10 +22,12 @@
     {% if user.id == listing.product.user.id %}
       <legend>Would you like to close this auction {{ user.username }}?</legend>
 
-      <div>
+      <form action="{% url 'close' listing.id %}" method="POST">
+        {% csrf_token %}
         <input type="checkbox" id="auction_state" name="auction_state" />
         <label for="auction_state">Close</label>
-      </div>
+        <input type="submit", value="Push">
+      </form>
 
     {% else %}
 
