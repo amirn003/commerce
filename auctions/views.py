@@ -69,8 +69,16 @@ def watchlist(request):
 
 
 @login_required
-def bid(request):
-    pass
+def bid(request, listing_id):
+    if request.method == "POST":
+        bid_user = request.POST["bid_user"]
+        listing = AuctionListing.objects.get(id=listing_id)
+
+        if listing.product.user.id == request.user.id:
+            return HttpResponse(f"<h1>It's your product {request.user}. You cannot bid on it!</h1>")
+
+
+        return HttpResponse(f"<h1>User  tip {bid_user} $ - {listing.product.user} - {listing.bid}</h1>")
 
 
 def login_view(request):
