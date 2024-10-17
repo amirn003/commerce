@@ -15,6 +15,14 @@ def index(request):
         "active_listing": active_listing
     })
 
+
+def won(request):
+    won_listing = AuctionListing.objects.filter(active=False)
+
+    return render(request, "auctions/won.html", {
+        "won_listing": won_listing
+    })
+
 @login_required
 def page(request, listing_id):
     listing = AuctionListing.objects.get(id=listing_id)

@@ -30,16 +30,19 @@
       </form>
 
     {% else %}
+      {% if listing.active == False %}
+        <h3>You won this {{ user }}! Congrats!🎊🎊🎉</h3>
+      {% else %}
 
-      <h3>Bid on the {{ listing.product.name }}:</h3>
-      <form action="{% url 'bid' listing.id %}" method="POST">
-        {% csrf_token %}
-        <input type="bid_user", name="bid_user", placeholder="{{ listing.bid.amount }}$">
-        <input type="submit", value="Validate">
-      </form>
+        <h3>Bid on the {{ listing.product.name }}:</h3>
+        <form action="{% url 'bid' listing.id %}" method="POST">
+          {% csrf_token %}
+          <input type="bid_user", name="bid_user", placeholder="{{ listing.bid.amount }}$">
+          <input type="submit", value="Validate">
+        </form>
 
-      <a class="btn btn-page" href="{% url 'add_to_watchlist' listing.id%}">Add to Watchlist</a>
-      <a class="btn btn-page" href="{% url 'remove_from_watchlist' listing.id%}">Remove from Watchlist</a>
-
+        <a class="btn btn-page" href="{% url 'add_to_watchlist' listing.id%}">Add to Watchlist</a>
+        <a class="btn btn-page" href="{% url 'remove_from_watchlist' listing.id%}">Remove from Watchlist</a>
+      {% endif %}
     {% endif %}
 {% endblock %}
