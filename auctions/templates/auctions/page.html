@@ -15,10 +15,10 @@
       </div>
     </div>
     <h3>Bid on {{ listing.product.name }}:</h3>
-    <form action="{% url 'bid' %}" method="post">
+    <form action="{% url 'bid' %}" method="POST">
       {% csrf_token %}
       <input type="bid_user", name="bid_user", placeholder="{{ listing.product.initial_price }}">
-      <input type="submit", value="Bid">
+      <input type="submit", value="Validate">
     </form><br>
 
     <a class="btn btn-page" href="{% url 'add_to_watchlist' listing.id%}">Add to Watchlist</a>
