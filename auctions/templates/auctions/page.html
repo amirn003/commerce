@@ -4,6 +4,8 @@
 {% block body %}
 
     <h2>Listing Page: {{ listing.id }}</h2>
+
+
     <div class="card">
       <img src="{{ listing.product.picture }}" />
       <div class="card-infos">
@@ -15,14 +17,27 @@
         <!-- <h3 class="card-pricing">{{ listing.product.initial_price }}$</h3>  -->
       </div>
     </div>
-    <h3>Bid on the {{ listing.product.name }}:</h3>
-    <form action="{% url 'bid' listing.id %}" method="POST">
-      {% csrf_token %}
-      <input type="bid_user", name="bid_user", placeholder="{{ listing.bid.amount }}$">
-      <input type="submit", value="Validate">
-    </form>
 
-    <a class="btn btn-page" href="{% url 'add_to_watchlist' listing.id%}">Add to Watchlist</a>
-    <a class="btn btn-page" href="{% url 'remove_from_watchlist' listing.id%}">Remove from Watchlist</a>
 
+    {% if user.id == listing.product.user.id %}
+      <legend>Would you like to close this auction {{ user.username }}?</legend>
+
+      <div>
+        <input type="checkbox" id="auction_state" name="auction_state" />
+        <label for="auction_state">Close</label>
+      </div>
+
+    {% else %}
+
+      <h3>Bid on the {{ listing.product.name }}:</h3>
+      <form action="{% url 'bid' listing.id %}" method="POST">
+        {% csrf_token %}
+        <input type="bid_user", name="bid_user", placeholder="{{ listing.bid.amount }}$">
+        <input type="submit", value="Validate">
+      </form>
+
+      <a class="btn btn-page" href="{% url 'add_to_watchlist' listing.id%}">Add to Watchlist</a>
+      <a class="btn btn-page" href="{% url 'remove_from_watchlist' listing.id%}">Remove from Watchlist</a>
+
+    {% endif %}
 {% endblock %}
