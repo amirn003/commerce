@@ -40,6 +40,7 @@ class Bid(models.Model):
 
 
 class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comment_user_ref", null=True)
     title = models.CharField(max_length=10)
     description = models.TextField()
 
