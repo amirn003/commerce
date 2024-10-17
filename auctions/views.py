@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from .models import User, AuctionListing, Watchlist
+from .models import User, AuctionListing, Watchlist, Bid
 
 
 def index(request):
@@ -73,12 +73,26 @@ def bid(request, listing_id):
     if request.method == "POST":
         bid_user = request.POST["bid_user"]
         listing = AuctionListing.objects.get(id=listing_id)
+        current_user_id = request.user.id
+        current_user = request.user
 
-        if listing.product.user.id == request.user.id:
-            return HttpResponse(f"<h1>It's your product {request.user}. You cannot bid on it!</h1>")
+        if listing.product.user.id == current_user_id:
+            return HttpResponse(f"<h1>It's your product {current_user}. You cannot bid on it!</h1>")
 
-
-        return HttpResponse(f"<h1>User  tip {bid_user} $ - {listing.product.user} - {listing.bid}</h1>")
+        ##TODO: Check if the bid proposed is upper to the previous
+        ## and set in the Bid object 'owner' to 'False'
+        ## add the new bid with the user object
+        if int(bid_user) > listing.bid.amount:
+            current_user_obj = User.objects.get(id=current_user_id)
+            my_bid = listing.bid.id
+            current_bid_obj = Bid.objects.get(id=my_bid)
+            current_bid_obj.owner = False
+            current_bid_obj.user = current_user_obj
+            current_bid_obj.amount = int(bid_user)
+            current_bid_obj.save()
+            return HttpResponse(f"<h1>{current_user}  tip {bid_user} $ - {listing.product.user} - {listing.bid} - {current_bid_obj}</h1>")
+        else:
+            return HttpResponse(f"<h1>Hi {current_user}! Please tip a bid over {listing.bid.amount}$.</h1>")
 
 
 def login_view(request):

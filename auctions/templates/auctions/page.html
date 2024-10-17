@@ -11,13 +11,14 @@
           <h3>{{ listing.product.name }}</h3>
           <p>{{ listing.product.description }}</p>
         </div>
-        <h3 class="card-pricing">{{ listing.product.initial_price }}$</h3>
+        <h3 class="card-pricing">{{ listing.bid.amount }}$</h3>
+        <!-- <h3 class="card-pricing">{{ listing.product.initial_price }}$</h3>  -->
       </div>
     </div>
     <h3>Bid on the {{ listing.product.name }}:</h3>
     <form action="{% url 'bid' listing.id %}" method="POST">
       {% csrf_token %}
-      <input type="bid_user", name="bid_user", placeholder="{{ listing.product.initial_price }}$">
+      <input type="bid_user", name="bid_user", placeholder="{{ listing.bid.amount }}$">
       <input type="submit", value="Validate">
     </form>
 
