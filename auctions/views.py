@@ -68,6 +68,11 @@ def watchlist(request):
     })
 
 
+@login_required
+def bid(request):
+    pass
+
+
 def login_view(request):
     if request.method == "POST":
 

@@ -73,3 +73,7 @@ body {
 .btn-page:hover {
   opacity: 1;
 }
+
+form {
+  margin-bottom: 50px;
+}

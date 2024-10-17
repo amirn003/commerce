@@ -14,7 +14,14 @@
         <h3 class="card-pricing">{{ listing.product.initial_price }}$</h3>
       </div>
     </div>
+    <h3>Bid on {{ listing.product.name }}:</h3>
+    <form action="{% url 'bid' %}" method="post">
+      {% csrf_token %}
+      <input type="bid_user", name="bid_user", placeholder="{{ listing.product.initial_price }}">
+      <input type="submit", value="Bid">
+    </form><br>
 
     <a class="btn btn-page" href="{% url 'add_to_watchlist' listing.id%}">Add to Watchlist</a>
     <a class="btn btn-page" href="{% url 'remove_from_watchlist' listing.id%}">Remove from Watchlist</a>
+
 {% endblock %}
