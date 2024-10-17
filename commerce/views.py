@@ -34,7 +34,7 @@ def add(request):
 
 
         ## Create a Product object
-        p = Product(name=title, category=category, description=description, initial_price=bid, picture=picture) #bid=bid
+        p = Product(user=current_user, name=title, category=category, description=description, initial_price=bid, picture=picture) #bid=bid
         p.save()
 
         ## Attach this Product object to a Bid object and set the price with the starting bid given in the form

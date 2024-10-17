@@ -15,6 +15,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="product_user", null=True, blank=True)
     name = models.CharField(max_length=64)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="category_ref")
     description = models.TextField()
