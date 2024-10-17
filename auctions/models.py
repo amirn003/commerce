@@ -31,6 +31,7 @@ class Product(models.Model):
 class Bid(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="bid_user")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="bid_product_ref")
+    owner = models.BooleanField(default=False)
     amount = models.IntegerField()
     time = models.DateTimeField(auto_now_add=True)
 

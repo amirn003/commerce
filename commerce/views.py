@@ -38,7 +38,7 @@ def add(request):
         p.save()
 
         ## Attach this Product object to a Bid object and set the price with the starting bid given in the form
-        b = Bid(user=current_user, product=p, amount=bid)
+        b = Bid(user=current_user, owner=True, product=p, amount=bid)
         b.save()
 
         c = Comment(title=f"{title} Comment", description="details")
