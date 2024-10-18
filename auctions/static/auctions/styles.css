@@ -2,6 +2,10 @@ body {
     padding: 10px;
 }
 
+h3 {
+  margin-top: 30px;
+}
+
 .flex-container {
   margin: 5em;
   display: flex;
@@ -75,5 +79,17 @@ body {
 }
 
 form {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
+}
+
+.comment-form {
+  width: 50%;
+  padding: 20px;
+}
+
+/* #title {
+  width: 80%;
+} */
+.comment-form > input, textarea {
+  width: 100%;
 }

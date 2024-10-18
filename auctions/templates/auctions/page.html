@@ -37,12 +37,23 @@
         <h3>Bid on the {{ listing.product.name }}:</h3>
         <form action="{% url 'bid' listing.id %}" method="POST">
           {% csrf_token %}
-          <input type="bid_user", name="bid_user", placeholder="{{ listing.bid.amount }}$">
+          <input type="text", name="bid_user", placeholder="{{ listing.bid.amount }}$">
           <input type="submit", value="Validate">
         </form>
 
         <a class="btn btn-page" href="{% url 'add_to_watchlist' listing.id%}">Add to Watchlist</a>
         <a class="btn btn-page" href="{% url 'remove_from_watchlist' listing.id%}">Remove from Watchlist</a>
+
+        <h3>Comments:</h3>
+        <div class="comment-form">
+          <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text", id="title", name="title", placeholder="Title"><br><br>
+            <textarea id="description", name="description", placeholder="Hi {{user}}! Tip your comment here..."></textarea><br>
+            <input type="submit", value="Validate">
+          </form>
+        </div>
+
       {% endif %}
     {% endif %}
 {% endblock %}

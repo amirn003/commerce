@@ -41,10 +41,10 @@ def add(request):
         b = Bid(user=current_user, owner=True, product=p, amount=bid)
         b.save()
 
-        c = Comment(title=f"{title} Comment", description="details")
-        c.save()
+        # c = Comment(title=f"{title} Comment", description="details")
+        # c.save()
 
-        a = AuctionListing(product=p, bid=b, comment=c)
+        a = AuctionListing(product=p, bid=b)
         a.save()
 
         return HttpResponse(f"<h1> {current_user}: Add NEW Enchères for: {p} Created!</h1><br><p>{a}</p>")
