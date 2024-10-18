@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from .models import User, AuctionListing, Watchlist, Bid
+from .models import User, AuctionListing, Watchlist, Bid, Comment
 
 
 def index(request):
@@ -118,8 +118,21 @@ def close(request, listing_id):
 
 
 @login_required
-def comment(request):
-    return HttpResponse("<h1>Comment </h1>")
+def comment(request, listing_id):
+    current_user_id = request.user.id
+    current_user = request.user
+
+    if request.method == "POST":
+        current_user_obj = User.objects.get(id=current_user_id)
+        title = request.POST["title"]
+        description = request.POST["description"]
+        listing = AuctionListing.objects.get(id=listing_id)
+
+        comment = Comment(user=current_user_obj, title=title, description=description)
+        comment.save()
+        comment.auction.add(listing)
+
+        return HttpResponse(f"<h1>Comment by {current_user} on {listing_id} - {title} - {description}</h1>")
 
 def login_view(request):
     if request.method == "POST":
