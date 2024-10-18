@@ -45,6 +45,15 @@
         <a class="btn btn-page" href="{% url 'remove_from_watchlist' listing.id%}">Remove from Watchlist</a>
 
         <h3>Comments:</h3>
+        <ul>
+          {% for comment in listing.comment.all %}
+            <li>{{ comment.description}} by <i> {{comment.user}}</i></li>
+          {% empty %}
+          <li>No comment yet.</li>
+          {% endfor %}
+        </ul>
+
+        <h3>Add a comment:</h3>
         <div class="comment-form">
           <form action="{% url 'comment' listing.id %}" method="POST">
             {% csrf_token %}
@@ -53,6 +62,9 @@
             <input type="submit", value="Validate">
           </form>
         </div>
+
+
+
 
       {% endif %}
     {% endif %}
