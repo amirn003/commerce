@@ -130,7 +130,7 @@ def comment(request, listing_id):
 
         comment = Comment(user=current_user_obj, title=title, description=description)
         comment.save()
-        comment.auction.add(listing)
+        listing.comment.add(comment)
 
         return HttpResponse(f"<h1>Comment by {current_user} on {listing_id} - {title} - {description}</h1>")
 
