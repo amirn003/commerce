@@ -39,26 +39,26 @@ class Bid(models.Model):
         return f"{self.user}: {self.amount} ({self.time})"
 
 
-class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comment_user_ref", null=True)
-    title = models.CharField(max_length=10)
-    description = models.TextField()
-
-    def __str__(self):
-        return f"{self.title}: {self.description}"
-
-
 class AuctionListing(models.Model):
     # title = models.CharField(max_length=10, default="New Auction")
     # description = models.CharField(max_length=64, default="None")
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="listing_product_ref", null=True, blank=True)
     bid = models.ForeignKey(Bid, on_delete=models.SET_NULL, related_name="bid_ref", null=True, blank=True)
-    comment = models.ForeignKey(Comment, on_delete=models.SET_NULL, related_name="comment_ref", null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True)
     active = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.bid}: {self.comment} ({self.date})"
+        return f"{self.bid}: {self.product} ({self.date})"
+
+
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="comment_user_ref", null=True)
+    title = models.CharField(max_length=10)
+    description = models.TextField()
+    auction = models.ManyToManyField(AuctionListing, blank=True, related_name="comment_auction_ref")
+
+    def __str__(self):
+        return f"{self.title}: {self.description}"
 
 
 class Watchlist(models.Model):
