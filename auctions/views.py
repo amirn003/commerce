@@ -17,11 +17,26 @@ def index(request):
 
 
 def won(request):
-    won_listing = AuctionListing.objects.filter(active=False)
+    current_user_id = request.user.id
+    current_user_obj = User.objects.get(id=current_user_id)
 
-    return render(request, "auctions/won.html", {
-        "won_listing": won_listing
-    })
+    won_listing = AuctionListing.objects.filter(active=False)
+    bid_win = []
+    for won in won_listing:
+        bid_id = won.bid.id
+        bid = Bid.objects.filter(id=bid_id, user=current_user_id)
+        if bid:
+            bid_win.append(bid)
+
+
+    if won_listing and len(bid_win) != 0:
+        return render(request, "auctions/won.html", {
+            "won_listing": won_listing
+        })
+
+    else:
+        return render(request, "auctions/tryagain.html")
+
 
 @login_required
 def page(request, listing_id):
