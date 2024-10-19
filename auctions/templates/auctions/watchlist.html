@@ -7,7 +7,7 @@
 
 <ul>
   {% for item in watchlist %}
-  <li>{{ item.auction }}</li>
+  <li><a href="{% url 'page' item.auction.id%}">{{ item.auction.product.name }}: </a>{{ item.auction }}</li>
   {% empty %}
   <li>No items.</li>
   {% endfor %}
