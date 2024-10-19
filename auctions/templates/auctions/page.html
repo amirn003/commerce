@@ -29,11 +29,11 @@
         <input type="submit", value="Push">
       </form>
 
-    {% else %}
-      {% if listing.active == False %}
-        <h3>You won this {{ user }}! Congrats!🎊🎊🎉</h3>
-      {% else %}
 
+
+
+    {% else %}
+      {% if listing.active == True %}
         <h3>Bid on the {{ listing.product.name }}:</h3>
         <form action="{% url 'bid' listing.id %}" method="POST">
           {% csrf_token %}
@@ -65,6 +65,14 @@
 
 
 
+
+      {% else %}
+
+        {% if you_win == True %}
+          <h3>You won this {{ user }}! Congrats!🎊🎊🎉</h3>
+        {% else %}
+          <h3>Too late! this listing has been won.</h3>
+        {% endif %}
 
       {% endif %}
     {% endif %}

@@ -16,11 +16,8 @@ def index(request):
     })
 
 
-def won(request):
-    current_user_id = request.user.id
-    current_user_obj = User.objects.get(id=current_user_id)
+def winning_strategy(won_listing, current_user_id):
 
-    won_listing = AuctionListing.objects.filter(active=False)
     bid_win = []
     for won in won_listing:
         bid_id = won.bid.id
@@ -28,6 +25,14 @@ def won(request):
         if bid:
             bid_win.append(bid)
 
+    return bid_win
+
+def won(request):
+    current_user_id = request.user.id
+    current_user_obj = User.objects.get(id=current_user_id)
+    won_listing = AuctionListing.objects.filter(active=False)
+
+    bid_win = winning_strategy(won_listing, current_user_id)
 
     if won_listing and len(bid_win) != 0:
         return render(request, "auctions/won.html", {
@@ -41,8 +46,16 @@ def won(request):
 @login_required
 def page(request, listing_id):
     listing = AuctionListing.objects.get(id=listing_id)
+    current_user_id = request.user.id
+    won_listing = AuctionListing.objects.filter(active=False)
+    bid_win = winning_strategy(won_listing, current_user_id)
+    you_win = False
+    if len(bid_win) != 0:
+        you_win = True
+
     return render(request, "auctions/page.html", {
-        "listing": listing
+        "listing": listing,
+        "you_win": you_win
     })
     #return HttpResponse(f"<h1>Listing Page: {listing_id}</h1>")
 
