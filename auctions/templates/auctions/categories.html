@@ -3,8 +3,10 @@
 {% block body %}
     <h2>Categories</h2>
 
-    <div class="flex-container">
+    <ul>
+      {% for category in categories %}
+        <li>{{ category.details }}</li>
+      {% endfor %}
 
-
-    </div>
+    </ul>
 {% endblock %}

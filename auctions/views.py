@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from .models import User, AuctionListing, Watchlist, Bid, Comment
+from .models import User, AuctionListing, Watchlist, Bid, Comment, Category
 
 
 def index(request):
@@ -164,7 +164,14 @@ def comment(request, listing_id):
 
 
 def categories(request):
-    return render(request, "auctions/categories.html")
+    categories = Category.objects.all()
+    #category = Category.objects.get(id=2)
+    #products_in_category = Product.objects.filter(category=category)
+
+
+    return render(request, "auctions/categories.html", {
+        "categories": categories
+    })
 
 
 def login_view(request):
