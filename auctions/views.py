@@ -162,6 +162,11 @@ def comment(request, listing_id):
 
         return HttpResponse(f"<h1>Comment by {current_user} on {listing_id} - {title} - {description}</h1>")
 
+
+def categories(request):
+    return render(request, "auctions/categories.html")
+
+
 def login_view(request):
     if request.method == "POST":
 
