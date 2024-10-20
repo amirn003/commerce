@@ -179,17 +179,18 @@ def display_category(request, category_id):
     category_name = Category.objects.get(id=category_id).details
 
     products_filtered = Product.objects.filter(category=category_id)
-    auctions_filtered = []
+    auctions_filtered_list = []
 
     if products_filtered:
         for product in products_filtered:
             auctions_filtered = AuctionListing.objects.filter(product__id=product.id)
-            #auctions_list.append(auction_filtered)
+            auctions_filtered_list.append(auctions_filtered)
 
     return render(request, "auctions/display_category.html", {
         "category_name": category_name,
         "category_id": category_id,
-        "auctions_filtered": auctions_filtered
+        "auctions_filtered": auctions_filtered, ##TODO: remove this, keep only the list
+        "auctions_filtered_list": auctions_filtered_list
     })
 
 
