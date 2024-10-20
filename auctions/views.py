@@ -165,12 +165,20 @@ def comment(request, listing_id):
 
 def categories(request):
     categories = Category.objects.all()
-    #category = Category.objects.get(id=2)
-    #products_in_category = Product.objects.filter(category=category)
+    # category = Category.objects.get(id=2)
+    # products_in_category = Product.objects.filter(category=category)
+    # auction21 = AuctionListing.objects.filter(product__name="Harley Davidson")
 
 
     return render(request, "auctions/categories.html", {
         "categories": categories
+    })
+
+
+def display_category(request, category_id):
+
+    return render(request, "auctions/display_category.html", {
+        "category_id": category_id
     })
 
 
