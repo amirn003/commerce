@@ -4,7 +4,11 @@
     <h2>Category: {{ category_name }} ({{ category_id }})</h2>
 
 
-    {% for auction in auctions_filtered %}
+
+
+    <!-- <p>{{ auctions_filtered_list }}</p> -->
+    {% for auctions in auctions_filtered_list %}
+      {% for auction in auctions %}
       <div class="card">
         <img src="{{ auction.product.picture }}" />
         <div class="card-infos">
@@ -14,21 +18,6 @@
           </div>
           <h3 class="card-pricing">{{ auction.bid.amount }}$</h3>
         </div>
-      </div>
-    {% endfor %}
-
-
-    <p>{{ auctions_filtered_list }}</p>
-    {% for auctions in auctions_filtered_list %}
-      {% for auction in auctions %}
-      <!-- To Keep it -->
-      <div class="flex-item">
-        <h3><a href="">{{ auction.product.name }}</a></h3>
-        <img src="{{ auction.product.picture }}" alt="">
-        <u>Description:</u><br>
-        <p>{{ auction.product.description }}</p>
-        <p><i>{{ auction.date }}</i></p>
-        <p>{{ auction.bid.amount }} $</p>
       </div>
       {% endfor %}
     {% empty %}

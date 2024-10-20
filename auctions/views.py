@@ -189,7 +189,6 @@ def display_category(request, category_id):
     return render(request, "auctions/display_category.html", {
         "category_name": category_name,
         "category_id": category_id,
-        "auctions_filtered": auctions_filtered, ##TODO: remove this, keep only the list
         "auctions_filtered_list": auctions_filtered_list
     })
 
