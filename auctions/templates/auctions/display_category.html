@@ -3,7 +3,12 @@
 {% block body %}
     <h2>Category: {{ category_name }} ({{ category_id }})</h2>
 
-
-    <p>{{ auctions_list }}</p>
+    <ul>
+      {% for auction in auctions_filtered %}
+        <li>{{ auction }}</li>
+      {% empty %}
+        <li>No items.</li>
+      {% endfor %}
+    </ul>
 
 {% endblock %}
