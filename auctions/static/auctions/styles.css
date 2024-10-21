@@ -7,25 +7,29 @@ h3 {
 }
 
 .flex-container {
-  margin: 5em;
+  margin: 4em;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
+.flex-item h3 {
+  margin: 0;
+}
+
 .flex-item{
-  margin: 1em;
-  height: 50vw;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  height: 500px;
   width: 40%;
   border: 3mm ridge rgba(211, 220, 50, .6);
-
 }
 
 .flex-item > img {
   display: block;
-  max-width: 70%;
-  height: auto;
-  margin-bottom: 15px;
+  width: 85%;
+  height: 300px;
+  margin-bottom: 10px;
 }
 
 .card {

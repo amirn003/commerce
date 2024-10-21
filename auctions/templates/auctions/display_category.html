@@ -14,7 +14,7 @@
           <img src="{{ auction.product.picture }}" />
           <div class="card-infos">
             <div>
-              <h3>{{ auction.product.name }}</h3>
+              <h3><a href="{% url 'page' auction.id%}">{{ auction.product.name }}</a></h3>
               <p>{{ auction.product.description }}</p>
             </div>
             <h3 class="card-pricing">{{ auction.bid.amount }}$</h3>
