@@ -32,6 +32,7 @@ h3 {
   margin-top: 25px;
   margin-bottom: 25px;
   width: 40vw;
+  height: 400px;
   overflow: hidden;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -39,7 +40,7 @@ h3 {
 
 .card > img {
   width: 35vw;
-  height: auto;
+  height: 300px;
   position: center;
   object-fit: cover;
 }

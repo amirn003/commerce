@@ -7,22 +7,24 @@
 
 
     <!-- <p>{{ auctions_filtered_list }}</p> -->
-    {% for auctions in auctions_filtered_list %}
-      {% for auction in auctions %}
-      <div class="card">
-        <img src="{{ auction.product.picture }}" />
-        <div class="card-infos">
-          <div>
-            <h3>{{ auction.product.name }}</h3>
-            <p>{{ auction.product.description }}</p>
+    <div class="flex-container">
+      {% for auctions in auctions_filtered_list %}
+        {% for auction in auctions %}
+        <div class="card">
+          <img src="{{ auction.product.picture }}" />
+          <div class="card-infos">
+            <div>
+              <h3>{{ auction.product.name }}</h3>
+              <p>{{ auction.product.description }}</p>
+            </div>
+            <h3 class="card-pricing">{{ auction.bid.amount }}$</h3>
           </div>
-          <h3 class="card-pricing">{{ auction.bid.amount }}$</h3>
         </div>
-      </div>
+        {% endfor %}
+      {% empty %}
+        <p>No items.</p>
       {% endfor %}
-    {% empty %}
-      <p>No items.</p>
-    {% endfor %}
+    </div>
 
 
 {% endblock %}
