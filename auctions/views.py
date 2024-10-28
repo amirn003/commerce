@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
@@ -48,6 +48,7 @@ def page(request, listing_id):
     listing = AuctionListing.objects.get(id=listing_id)
     current_user_id = request.user.id
     won_listing = AuctionListing.objects.filter(active=False)
+    active_listings = AuctionListing.objects.filter(active=True, id=listing_id)
     bid_win = winning_strategy(won_listing, current_user_id)
     you_win = False
     if len(bid_win) != 0:
@@ -55,7 +56,8 @@ def page(request, listing_id):
 
     return render(request, "auctions/page.html", {
         "listing": listing,
-        "you_win": you_win
+        "you_win": you_win,
+        "active_listings": active_listings
     })
     #return HttpResponse(f"<h1>Listing Page: {listing_id}</h1>")
 
@@ -66,10 +68,9 @@ def add_to_watchlist(request, listing_id):
     listing = AuctionListing.objects.get(id=listing_id)
     watchlist = Watchlist.objects.filter(user=current_user_id, auction=listing)
 
-    if listing.bid.user == current_user:
-        return HttpResponse(f"<h1>This item: {listing.bid} is yours. You cannot add it to your watchlist.</h1>")
-
-    elif watchlist:
+    # if listing.bid.user == current_user:
+    #     return HttpResponse(f"<h1>This item: {listing.bid} is yours. You cannot add it to your watchlist.</h1>")
+    if watchlist:
         return HttpResponse(f"<h1>This item: {listing.bid} is already in your Watchlist.</h1>")
 
     else:
@@ -126,7 +127,8 @@ def bid(request, listing_id):
             current_bid_obj.user = current_user_obj
             current_bid_obj.amount = int(bid_user)
             current_bid_obj.save()
-            return HttpResponse(f"<h1>{current_user}  tip {bid_user} $ - {listing.product.user} - {listing.bid} - {current_bid_obj}</h1>")
+            return redirect(f'/{listing.id}')
+            #return HttpResponse(f"<h1>{current_user}  tip {bid_user} $ - {listing.product.user} - {listing.bid} - {current_bid_obj}</h1>")
         else:
             return HttpResponse(f"<h1>Hi {current_user}! Please tip a bid over {listing.bid.amount}$.</h1>")
 

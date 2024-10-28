@@ -20,6 +20,18 @@
 
 
     {% if user.id == listing.product.user.id %}
+
+      <h4>Current Bider:</h4>
+      <ul>
+        {% for active_listing in active_listings %}
+          <li>{{ active_listing.bid.user }} bids {{ active_listing.bid.amount }}$</li>
+        {% empty %}
+          <li>No any biders yet.</li>
+        {% endfor %}
+      </ul>
+
+
+
       <legend>Would you like to close this auction {{ user.username }}?</legend>
 
       <form action="{% url 'close' listing.id %}" method="POST">
