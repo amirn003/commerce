@@ -75,7 +75,8 @@ def add_to_watchlist(request, listing_id):
     else:
         watchlist = Watchlist(user=current_user, auction=listing, state=True)
         watchlist.save()
-        return HttpResponse(f"<h1>Listing ID: {listing_id} added to {current_user}'s Watchlist ({request.user.id})!</h1>")
+        return HttpResponseRedirect(reverse("watchlist"))
+        #return HttpResponse(f"<h1>Listing ID: {listing_id} added to {current_user}'s Watchlist ({request.user.id})!</h1>")
 
 
 @login_required
@@ -87,10 +88,9 @@ def remove_from_watchlist(request, listing_id):
 
     if watchlist.exists():
         watchlist.delete()
-        return HttpResponse(f"<h1>Item: {listing.bid} removed from your <a href='/watchlist/'>Watchlist</a>.</h1>")
+        return HttpResponseRedirect(reverse("watchlist"))
 
     else:
-
         return HttpResponse(f"<h1>Item: {listing_id} is not yet in your <a href='/watchlist/'>Watchlist</a>.</h1>")
 
 
