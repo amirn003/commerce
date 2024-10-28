@@ -32,7 +32,6 @@ def add(request):
         ## Create an object Category
         category = Category.objects.get(id=category_id)
 
-
         ## Create a Product object
         p = Product(user=current_user, name=title, category=category, description=description, initial_price=bid, picture=picture) #bid=bid
         p.save()
@@ -47,4 +46,4 @@ def add(request):
         a = AuctionListing(product=p, bid=b)
         a.save()
 
-        return HttpResponse(f"<h1> {current_user}: Add NEW Enchères for: {p} Created!</h1><br><p>{a}</p>")
+        return HttpResponse(f"<h1>New Listing added with success by <i>{current_user}</i>.<br><a href='/{a.id}'>Go to this article</a></h1>")
