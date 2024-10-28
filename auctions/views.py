@@ -27,10 +27,11 @@ def winning_strategy(won_listing, current_user_id):
 
     return bid_win
 
+
 def won(request):
     current_user_id = request.user.id
     current_user_obj = User.objects.get(id=current_user_id)
-    won_listing = AuctionListing.objects.filter(active=False)
+    won_listing = AuctionListing.objects.filter(active=False).exclude(product__user=current_user_obj)
 
     bid_win = winning_strategy(won_listing, current_user_id)
 

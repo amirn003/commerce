@@ -30,8 +30,6 @@
         {% endfor %}
       </ul>
 
-
-
       <legend>Would you like to close this auction {{ user.username }}?</legend>
 
       <form action="{% url 'close' listing.id %}" method="POST">
@@ -40,8 +38,6 @@
         <label for="auction_state">Close</label>
         <input type="submit", value="Push">
       </form>
-
-
 
 
     {% else %}
