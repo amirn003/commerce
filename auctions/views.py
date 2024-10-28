@@ -163,7 +163,8 @@ def comment(request, listing_id):
         comment.save()
         listing.comment.add(comment)
 
-        return HttpResponse(f"<h1>Comment by {current_user} on {listing_id} - {title} - {description}</h1>")
+        return redirect(f'/{listing_id}')
+        # return HttpResponse(f"<h1>Comment by {current_user} on {listing_id} - {title} - {description}</h1>")
 
 
 def categories(request):
