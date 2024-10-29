@@ -15,21 +15,24 @@ h3 {
 
 .flex-item h3 {
   margin: 0;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .flex-item{
   margin-top: 25px;
   margin-bottom: 25px;
-  height: 500px;
+  height: 550px;
   width: 40%;
   border: 3mm ridge rgba(211, 220, 50, .6);
 }
 
 .flex-item > img {
+  margin-left: 15%;
   display: block;
-  width: 85%;
+  width: 70%;
   height: 300px;
-  margin-bottom: 10px;
+  margin-bottom: 19px;
 }
 
 .card {
