@@ -24,7 +24,11 @@
       <h4>Current Bider:</h4>
       <ul>
         {% for active_listing in active_listings %}
-          <li>{{ active_listing.bid.user }} bids {{ active_listing.bid.amount }}$</li>
+          {% if  active_listing.bid.user == user %}
+            <li>No any biders yet.</li>
+          {% else %}
+            <li>{{ active_listing.bid.user }} bids {{ active_listing.bid.amount }}$</li>
+          {% endif %}
         {% empty %}
           <li>No any biders yet.</li>
         {% endfor %}

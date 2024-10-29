@@ -2,10 +2,17 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from auctions.models import Product, Category, Bid, Comment, AuctionListing
+from django import forms
 
 
-# def index(request):
-#     return HttpResponse("Commerce Index")
+class ListingForm(forms.Form):
+
+    title = forms.CharField(label="Title",widget=forms.TextInput(attrs={"class": "form-control", "placeholder":"Title"}))
+    description = forms.CharField(label="Description", widget=forms.Textarea(attrs={"class": "form-control", "placeholder":"Description", "rows":"7"}))
+    bid = forms.IntegerField(label="Bid ($)", widget=forms.TextInput(attrs={"class": "form-control", "placeholder":"Bid ($)"}))
+
+    picture = forms.CharField(label="URL for an image",widget=forms.TextInput(attrs={"class": "form-control", "placeholder":"URL"}))
+
 
 def create(request):
     categories = Category.objects.all()
@@ -13,7 +20,8 @@ def create(request):
     #categories = Category.objects.get(code="VEH")
     return render(request, "auctions/create.html", {
         "categories": categories,
-        "category_info": category_info
+        "category_info": category_info,
+        "form": ListingForm()
     })
 
 
