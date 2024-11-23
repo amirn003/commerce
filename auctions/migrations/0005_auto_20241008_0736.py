@@ -18,6 +18,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='auctionlisting',
             name='title',
-            field=models.CharField(default='New Auction', max_length=10),
+            field=models.CharField(default='New Auction', max_length=50),
         ),
     ]
