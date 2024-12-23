@@ -1,4 +1,4 @@
-# Commerce HarvardX Project2
+# Commerce Django (HarvardX)
 
 This is a Django-based web application for managing auctions. Users can create, bid on, and comment on auction listings.
 
